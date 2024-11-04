@@ -1,0 +1,24 @@
+codigoTipoDocumento,nombreTipoDocumento
+ABIS,Sistema Automático de Identificación por biometrías
+AFIS,Sistema Automático de Identificación de Impresiones Dactilares
+ANI,Archivo Nacional de Identificación
+CC,Cedula de ciudadanía
+CC PV,Cedula de ciudadanía de primera vez
+CC DUP,Duplicado de cédula de ciudadanía
+CC REN,Renovación de cédula de ciudadanía
+CC REC,Rectificación de cedula de ciudadanía
+CC DIG,Cédula digital
+CCT,Centro de consulta técnica
+DCU,Unidad de captura de datos en papel
+EIS,Estación integrada de servicios
+HLED-WEB,Herramienta Logística de Entrega de documentos vía web
+MTR,Manejador de Transacciones.
+NIP,Número de Identificación personal
+NUIP,Número Único de Identificación Personal
+SIC,Sistema de Información de Correspondencia
+SITAC,Sistema Integral de tramites al ciudadano (Cancillería)
+TI,Tarjeta de identidad
+TI PV,Tarjeta de identidad de primera vez
+TI DUP,Duplicado de tarjeta de identidad
+TI REN,Renovación de tarjeta de identidad
+TI REC,Rectificación de tarjeta de identidad
