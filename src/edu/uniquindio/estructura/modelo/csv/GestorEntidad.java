@@ -91,16 +91,17 @@ public class GestorEntidad {
 
         try {
             LinkedList<String[]> lineas = LectorArchivo.leerTodasLasLineasCsv(this.rutaArchivo);
-
+            
             for (String[] linea : lineas) {
+            	
                 ClaseEntidad instancia = claseEntidad.getDeclaredConstructor().newInstance();
-
+                
                 for (Map.Entry<Integer, String> itemMapa : this.mapeoColumnas.entrySet()) {
 
                     Field atributo = claseEntidad.getDeclaredField(itemMapa.getValue());
                     atributo.setAccessible(true);
                     String value = linea[itemMapa.getKey()];
-
+                    
                     if (atributo.getType().equals(Integer.class) || atributo.getType().equals(int.class)) {
                         atributo.set(instancia, Integer.parseInt(value));
                     } else if (atributo.getType().equals(Double.class) || atributo.getType().equals(double.class)) {

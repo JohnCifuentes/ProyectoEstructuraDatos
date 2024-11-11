@@ -15,7 +15,7 @@ public class TipoDocumento {
 	}
 
 	public String getCodigoTipoDocumento() {
-		return codigoTipoDocumento;
+		return this.codigoTipoDocumento;
 	}
 
 	public void setCodigoTipoDocumento(String codigoTipoDocumento) {
@@ -23,7 +23,7 @@ public class TipoDocumento {
 	}
 	
 	public String getNombreTipoDocumento() {
-		return nombreTipoDocumento;
+		return this.nombreTipoDocumento;
 	}
 
 	public void setNombreTipoDocumento(String nombreTipoDocumento) {

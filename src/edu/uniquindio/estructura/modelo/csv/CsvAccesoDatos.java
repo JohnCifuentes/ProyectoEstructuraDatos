@@ -18,6 +18,7 @@ public abstract class CsvAccesoDatos<ClaseEntidad, TipoId>
         ).getActualTypeArguments()[0];
 
         this.GestorEntidad = new GestorEntidad(rutaArchivo);
+        
     }
 
     @Override

@@ -19,5 +19,22 @@ public enum TipoEntidad {
 		return codigoTipoEntidad;
 	}
 
+	public static boolean existe(String valor) {
+		for(TipoEntidad t: TipoEntidad.values()) {
+			if(t.getCodigoTipoEntidad().equals(valor)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public static TipoEntidad getTipoEntidad(String valor) {
+		for(TipoEntidad t: TipoEntidad.values()) {
+			if(t.getCodigoTipoEntidad().equals(valor)) {
+				return t;
+			}
+		}
+		return null;
+	}
 	
 }

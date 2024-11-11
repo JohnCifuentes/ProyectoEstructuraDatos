@@ -1,12 +1,12 @@
 package edu.uniquindio.estructura.modelo.entidades;
 
 public enum TipoCaracterizacion {
-	INHABILITAR("Inhabilitar", 1), EMBARGAR("Embargar", 2);
+	INHABILITAR("Inhabilitar", "1"), EMBARGAR("Embargar", "2");
 	
 	private String nombreTipoCaracterizacion;
-	private int codigoTipoCaracterizacion;
+	private String codigoTipoCaracterizacion;
 	
-	private TipoCaracterizacion(String nombreTipoCaracterizacion, int codigoTipoCaracterizacion) {
+	private TipoCaracterizacion(String nombreTipoCaracterizacion, String codigoTipoCaracterizacion) {
 		this.nombreTipoCaracterizacion = nombreTipoCaracterizacion;
 		this.codigoTipoCaracterizacion = codigoTipoCaracterizacion;
 	}
@@ -15,8 +15,26 @@ public enum TipoCaracterizacion {
 		return nombreTipoCaracterizacion;
 	}
 
-	public int getCodigoTipoCaracterizacion() {
+	public String getCodigoTipoCaracterizacion() {
 		return codigoTipoCaracterizacion;
+	}
+	
+	public static boolean existe(String valor) {
+		for(TipoCaracterizacion t: TipoCaracterizacion.values()) {
+			if(t.getCodigoTipoCaracterizacion().equals(valor)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public static TipoCaracterizacion getTipoCaracterizacion(String valor) {
+		for(TipoCaracterizacion t: TipoCaracterizacion.values()) {
+			if(t.getCodigoTipoCaracterizacion().equals(valor)) {
+				return t;
+			}
+		}
+		return null;		
 	}
 
 }

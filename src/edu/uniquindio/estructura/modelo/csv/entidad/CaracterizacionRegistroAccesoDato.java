@@ -7,12 +7,8 @@ import edu.uniquindio.estructura.modelo.entidades.CaracterizacionRegistro;
 
 public class CaracterizacionRegistroAccesoDato extends CsvAccesoDatos<CaracterizacionRegistro, String>{
 
-	public CaracterizacionRegistroAccesoDato() throws IOException {
-		super("");
-	}
-	
-	public CaracterizacionRegistroAccesoDato(String ruta) throws IOException {
-		super(ruta);
+	public CaracterizacionRegistroAccesoDato(String rutaArchivo) throws IOException {
+		super(rutaArchivo);
 	}
 
 }

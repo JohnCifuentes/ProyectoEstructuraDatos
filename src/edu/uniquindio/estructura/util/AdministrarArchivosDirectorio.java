@@ -15,34 +15,25 @@ import java.util.zip.ZipOutputStream;
 
 public class AdministrarArchivosDirectorio {
 	
-	public AdministrarArchivosDirectorio() {
-		
-	}
-
-    // Método para capturar los nombres de los archivos y directorios en el directorio asignado
     public List<String> obtenerNombresObjetosEnDirectorio(String rutaDirectorio) {
         List<String> nombres = new ArrayList<>();
         File directorio = new File(rutaDirectorio);
-        
         if (directorio.exists() && directorio.isDirectory()) {
             for (File archivo : directorio.listFiles()) {
                 nombres.add(archivo.getName());
             }
         }
-        
         return nombres;
     }
 
-    // Método para crear un nuevo directorio
     public boolean crearDirectorio(String rutaDirectorio) {
         File directorio = new File(rutaDirectorio);
         if (!directorio.exists()) {
             return directorio.mkdirs();
         }
-        return false; // Ya existe
+        return false;
     }
 
-    // Método para mover un archivo de un directorio X a un directorio Y
     public boolean moverArchivo(String rutaArchivoOrigen, String rutaDirectorioDestino) {
         Path origenPath = Paths.get(rutaArchivoOrigen);
         Path destinoPath = Paths.get(rutaDirectorioDestino).resolve(origenPath.getFileName());
@@ -56,11 +47,10 @@ public class AdministrarArchivosDirectorio {
         }
     }
 
-    // Método para comprimir un directorio
     public boolean comprimirDirectorio(String rutaDirectorio, String rutaArchivoZip) {
         File directorio = new File(rutaDirectorio);
         if (!directorio.exists() || !directorio.isDirectory()) {
-            return false; // El directorio no existe o no es un directorio
+            return false;
         }
         
         try (FileOutputStream fos = new FileOutputStream(rutaArchivoZip);
@@ -75,7 +65,6 @@ public class AdministrarArchivosDirectorio {
         }
     }
     
-    // Método auxiliar para comprimir directorios de forma recursiva
     private void comprimirDirectorioRecursivo(File archivo, String nombreArchivo, ZipOutputStream zipOut) throws IOException {
         if (archivo.isDirectory()) {
             if (nombreArchivo.endsWith("/")) {

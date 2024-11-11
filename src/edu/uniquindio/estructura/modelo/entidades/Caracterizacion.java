@@ -6,7 +6,6 @@ public class Caracterizacion {
 	private TipoCaracterizacion tipoCaracterizacion;
 	
 	public Caracterizacion(TipoEntidad tipoEntidad, Persona persona, TipoCaracterizacion tipoCaracterizacion) {
-		super();
 		this.tipoEntidad = tipoEntidad;
 		this.persona = persona;
 		this.tipoCaracterizacion = tipoCaracterizacion;

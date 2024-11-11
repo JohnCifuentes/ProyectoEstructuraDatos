@@ -4,12 +4,31 @@ public class Persona {
 	private TipoDocumento tipoDocumento;
 	private String documento;
 	private String nombreCompleto;
+	private String fechaNacimiento;
+	private Departamento departamentoNacimiento;
+	private Municipio ciudadNacimiento;
+	private Departamento departamentoResidencia;
+	private Municipio ciudadResidencia;
 	
 	public Persona(TipoDocumento tipoDocumento, String documento, String nombreCompleto) {
 		super();
 		this.tipoDocumento = tipoDocumento;
 		this.documento = documento;
 		this.nombreCompleto = nombreCompleto;
+	}
+
+	public Persona(TipoDocumento tipoDocumento, String documento, String nombreCompleto, String fechaNacimiento,
+			Departamento departamentoNacimiento, Municipio ciudadNacimiento, Departamento departamentoResidencia,
+			Municipio ciudadResidencia) {
+		super();
+		this.tipoDocumento = tipoDocumento;
+		this.documento = documento;
+		this.nombreCompleto = nombreCompleto;
+		this.fechaNacimiento = fechaNacimiento;
+		this.departamentoNacimiento = departamentoNacimiento;
+		this.ciudadNacimiento = ciudadNacimiento;
+		this.departamentoResidencia = departamentoResidencia;
+		this.ciudadResidencia = ciudadResidencia;
 	}
 
 	public TipoDocumento getTipoDocumento() {
@@ -36,4 +55,44 @@ public class Persona {
 		this.nombreCompleto = nombreCompleto;
 	}
 
+	public String getFechaNacimiento() {
+		return fechaNacimiento;
+	}
+
+	public void setFechaNacimiento(String fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
+	}
+
+	public Departamento getDepartamentoNacimiento() {
+		return departamentoNacimiento;
+	}
+
+	public void setDepartamentoNacimiento(Departamento departamentoNacimiento) {
+		this.departamentoNacimiento = departamentoNacimiento;
+	}
+
+	public Municipio getCiudadNacimiento() {
+		return ciudadNacimiento;
+	}
+
+	public void setCiudadNacimiento(Municipio ciudadNacimiento) {
+		this.ciudadNacimiento = ciudadNacimiento;
+	}
+
+	public Departamento getDepartamentoResidencia() {
+		return departamentoResidencia;
+	}
+
+	public void setDepartamentoResidencia(Departamento departamentoResidencia) {
+		this.departamentoResidencia = departamentoResidencia;
+	}
+
+	public Municipio getCiudadResidencia() {
+		return ciudadResidencia;
+	}
+
+	public void setCiudadResidencia(Municipio ciudadResidencia) {
+		this.ciudadResidencia = ciudadResidencia;
+	}
+	
 }
