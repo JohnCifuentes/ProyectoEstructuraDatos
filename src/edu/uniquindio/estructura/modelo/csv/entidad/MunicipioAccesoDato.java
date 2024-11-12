@@ -8,7 +8,7 @@ import edu.uniquindio.estructura.modelo.entidades.Municipio;
 public class MunicipioAccesoDato extends CsvAccesoDatos<Municipio, String>{
 
 	public MunicipioAccesoDato() throws IOException {
-		super("C:\\Users\\johnc\\eclipse-workspace\\ProyectoEstructuraDatos\\recursos\\Utilitario\\municipiosColombia.csv");
+		super("C:\\Users\\Steba\\IdeaProjects\\ProyectoEstructuraDatos\\recursos\\Utilitario\\municipiosColombia.csv");
 	}
 
 }

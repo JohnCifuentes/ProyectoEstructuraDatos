@@ -14,7 +14,7 @@ import edu.uniquindio.estructura.util.AdministrarArchivosDirectorio;
 import edu.uniquindio.estructura.util.Herramientas;
 
 public class ControladorCaracterizacion {
-	private static final String DIRECTORIO = "C:\\Users\\johnc\\eclipse-workspace\\ProyectoEstructuraDatos\\recursos\\Caracterizaciones";
+	private static final String DIRECTORIO = "C:\\Users\\Steba\\IdeaProjects\\ProyectoEstructuraDatos\\recursos\\Caracterizaciones";
 	private static final int TAMANO_NOMBRE_ARCHIVO = 14; 
 	
 	private CargarArchivos cargarArchivos;
@@ -22,6 +22,10 @@ public class ControladorCaracterizacion {
 	
 	public ControladorCaracterizacion(CargarArchivos cargarArchivos) {
 		this.cargarArchivos = cargarArchivos;
+		this.caracterizaciones = new ArrayList<>();
+	}
+	
+	public void actualizarCaracterizaciones() {
 		this.caracterizaciones = cargarCaracterizaciones();
 	}
 	
@@ -61,13 +65,22 @@ public class ControladorCaracterizacion {
 		}
 		return true;
 	}
+
+	public ArrayList<Caracterizacion> getCaracterizaciones() {
+		return caracterizaciones;
+	}
+
+	public void setCaracterizaciones(ArrayList<Caracterizacion> caracterizaciones) {
+		this.caracterizaciones = caracterizaciones;
+	}
 	
-	public TipoCaracterizacion existeCaracterizacion(Persona persona) {
+	public Caracterizacion obtenerCaracterizacion(Persona persona) {
 		for(Caracterizacion c: this.caracterizaciones) {
 			if(c.getPersona().getTipoDocumento().equals(persona.getTipoDocumento()) && c.getPersona().getDocumento().equals(persona.getDocumento())) {
-				return c.getTipoCaracterizacion();
+				return c;
 			}
 		}
 		return null;
 	}
+	
 }
