@@ -1,5 +1,7 @@
 package edu.uniquindio.estructura.util;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -59,5 +61,12 @@ public class Herramientas {
 	        return false;
 	    }
 	}
+    
+    public static String generarFechaFormato() {
+        LocalDate fechaActual = LocalDate.now();
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("ddMMyyyy");
+        String fechaFormateada = fechaActual.format(formato);
+        return fechaFormateada;
+    }
 
 }

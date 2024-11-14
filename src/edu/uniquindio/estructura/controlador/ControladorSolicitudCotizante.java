@@ -14,21 +14,26 @@ import edu.uniquindio.estructura.util.AdministrarArchivosDirectorio;
 import edu.uniquindio.estructura.util.Herramientas;
 
 public class ControladorSolicitudCotizante {
-	private static final String DIRECTORIO = "C:\\Users\\johnc\\eclipse-workspace\\ProyectoEstructuraDatos\\recursos\\SolicitudesEntrantes";
+	private static final String DIRECTORIO_SOLICITUD_ENTRANTES = "C:\\Users\\Steba\\IdeaProjects\\ProyectoEstructuraDatos\\recursos\\SolicitudesEntrantes";
+	private static final String DIRECTORIO_SOLICITUD_PROCESO = "C:\\Users\\Steba\\IdeaProjects\\ProyectoEstructuraDatos\\recursos\\SolicitudesEnProceso";
 	
 	private CargarArchivos cargarArchivos;
 	private ArrayList<SolicitudCotizante> solicitudCotizantes;
 	
-	public ControladorSolicitudCotizante(CargarArchivos cargarArchivos) throws IOException {
+	public ControladorSolicitudCotizante(CargarArchivos cargarArchivos) {
 		this.cargarArchivos = cargarArchivos; 
+		this.solicitudCotizantes = new ArrayList<>();
+	}
+	
+	public void actualizarSolicitudCotizaciones() throws IOException {
 		this.solicitudCotizantes = cargarSolicitudCotizantes();
 	}
 	
-	public ArrayList<SolicitudCotizante> cargarSolicitudCotizantes() throws IOException{
+	private ArrayList<SolicitudCotizante> cargarSolicitudCotizantes() throws IOException{
 		ArrayList<SolicitudCotizante> solicitudCotizantes = new ArrayList<>();
 		
-		for(String a: new AdministrarArchivosDirectorio().obtenerNombresObjetosEnDirectorio(DIRECTORIO)) {
-			for(SolicitudCotizanteRegistro s: new SolicitudCotizanteRegistroAccesoDato(DIRECTORIO + "\\" + a).obtenerTodos()) {
+		for(String a: new AdministrarArchivosDirectorio().obtenerNombresObjetosEnDirectorio(DIRECTORIO_SOLICITUD_ENTRANTES)) {
+			for(SolicitudCotizanteRegistro s: new SolicitudCotizanteRegistroAccesoDato(DIRECTORIO_SOLICITUD_ENTRANTES + "\\" + a).obtenerTodos()) {
 				if(validarEstructuraRegistroArchivo(s)) {
 					solicitudCotizantes.add(
 							new SolicitudCotizante(
@@ -53,12 +58,13 @@ public class ControladorSolicitudCotizante {
 						);
 				}
 			}
+			moverArchivoSolicitudProceso(a);
 		};
 		
 		return solicitudCotizantes;
 	}
 	
-	public boolean validarEstructuraRegistroArchivo(SolicitudCotizanteRegistro solicitudCotizanteRegistro) {
+	private boolean validarEstructuraRegistroArchivo(SolicitudCotizanteRegistro solicitudCotizanteRegistro) {
 		if(!this.cargarArchivos.getArchivosUtilitario().existeTipoDocumento(solicitudCotizanteRegistro.getTipoDocumento())) {
 			return false;
 		}
@@ -84,7 +90,6 @@ public class ControladorSolicitudCotizante {
 		}
 		
 		if(!FondosOrigen.existe(solicitudCotizanteRegistro.getFondoOrigen())) {
-			System.out.println("departamento");
 			return false;
 		}
 		
@@ -128,9 +133,18 @@ public class ControladorSolicitudCotizante {
 		
 		return true;
 	}
+	
+	private void moverArchivoSolicitudProceso(String nombreArchivo) {
+		AdministrarArchivosDirectorio administrarArchivosDirectorio = new AdministrarArchivosDirectorio();
+		administrarArchivosDirectorio.moverArchivo(DIRECTORIO_SOLICITUD_ENTRANTES + "\\" + nombreArchivo, DIRECTORIO_SOLICITUD_PROCESO);
+	}
 
 	public ArrayList<SolicitudCotizante> getSolicitudCotizantes() {
 		return solicitudCotizantes;
 	}
 
+	public void setSolicitudCotizantes(ArrayList<SolicitudCotizante> solicitudCotizantes) {
+		this.solicitudCotizantes = solicitudCotizantes;
+	}
+	
 }

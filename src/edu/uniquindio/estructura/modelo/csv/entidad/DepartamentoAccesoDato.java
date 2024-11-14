@@ -8,7 +8,7 @@ import edu.uniquindio.estructura.modelo.entidades.Departamento;
 public class DepartamentoAccesoDato extends CsvAccesoDatos<Departamento, String>{
 
 	public DepartamentoAccesoDato() throws IOException {
-		super("C:\\Users\\johnc\\eclipse-workspace\\ProyectoEstructuraDatos\\recursos\\Utilitario\\departamentosColombia.csv");
+		super("C:\\Users\\Steba\\IdeaProjects\\ProyectoEstructuraDatos\\recursos\\Utilitario\\departamentosColombia.csv");
 	}
 
 }
