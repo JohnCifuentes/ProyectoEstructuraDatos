@@ -35,4 +35,11 @@ public class Caracterizacion {
 		this.tipoCaracterizacion = tipoCaracterizacion;
 	}
 		
+	@Override
+	public String toString() {
+		return this.tipoEntidad.getNombreTipoEntidad() 
+				+ " - " + this.persona.datosBasicos()
+				+ " - " + this.tipoCaracterizacion.getNombreTipoCaracterizacion()
+				;
+	}
 }

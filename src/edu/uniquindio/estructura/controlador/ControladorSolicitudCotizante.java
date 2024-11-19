@@ -9,13 +9,13 @@ import edu.uniquindio.estructura.modelo.entidades.FondosOrigen;
 import edu.uniquindio.estructura.modelo.entidades.InstitucionesPublicas;
 import edu.uniquindio.estructura.modelo.entidades.Persona;
 import edu.uniquindio.estructura.modelo.entidades.SolicitudCotizante;
-import edu.uniquindio.estructura.modelo.entidades.SolicitudCotizanteRegistro;
+import edu.uniquindio.estructura.modelo.entidades.registros.SolicitudCotizanteRegistro;
 import edu.uniquindio.estructura.util.AdministrarArchivosDirectorio;
 import edu.uniquindio.estructura.util.Herramientas;
 
 public class ControladorSolicitudCotizante {
-	private static final String DIRECTORIO_SOLICITUD_ENTRANTES = "C:\\Users\\Steba\\IdeaProjects\\ProyectoEstructuraDatos\\recursos\\SolicitudesEntrantes";
-	private static final String DIRECTORIO_SOLICITUD_PROCESO = "C:\\Users\\Steba\\IdeaProjects\\ProyectoEstructuraDatos\\recursos\\SolicitudesEnProceso";
+	private static final String DIRECTORIO_SOLICITUD_ENTRANTES = Herramientas.getDirectorioSolicitudEntrantes();
+	private static final String DIRECTORIO_SOLICITUD_PROCESO = Herramientas.getDirectorioSolicitudProceso();
 	
 	private CargarArchivos cargarArchivos;
 	private ArrayList<SolicitudCotizante> solicitudCotizantes;
@@ -37,6 +37,7 @@ public class ControladorSolicitudCotizante {
 				if(validarEstructuraRegistroArchivo(s)) {
 					solicitudCotizantes.add(
 							new SolicitudCotizante(
+									a,
 									new Persona(
 											this.cargarArchivos.getArchivosUtilitario().getTipoDocumento(s.getTipoDocumento()), 
 											s.getNumeroDocumento(),
@@ -60,7 +61,6 @@ public class ControladorSolicitudCotizante {
 			}
 			moverArchivoSolicitudProceso(a);
 		};
-		
 		return solicitudCotizantes;
 	}
 	

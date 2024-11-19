@@ -1,12 +1,13 @@
 package edu.uniquindio.estructura.modelo.entidades;
 
-public class SolicitudCotizanteAprobado extends SolicitudCotizante{
+public class SolicitudCotizanteAprobado extends Cotizante{
 
-	public SolicitudCotizanteAprobado(Persona persona, FondosOrigen fondoOrigen, int prePensionado,
-			InstitucionesPublicas institucionPublica, int condecoracion, int hijosInpec, int familiaPolicia,
-			int observacionDisciplinaria, int numeroSemanas) {
-		super(persona, fondoOrigen, prePensionado, institucionPublica, condecoracion, hijosInpec, familiaPolicia,
-				observacionDisciplinaria, numeroSemanas);
+	public SolicitudCotizanteAprobado(TipoDocumento tipoDocumento, String documento, String nombreCompleto,
+			String fechaNacimiento, Departamento departamentoNacimiento, Municipio ciudadNacimiento,
+			Departamento departamentoResidencia, Municipio ciudadResidencia) {
+		super(tipoDocumento, documento, nombreCompleto, fechaNacimiento, departamentoNacimiento, ciudadNacimiento,
+				departamentoResidencia, ciudadResidencia);
 	}
-
+	
+	
 }

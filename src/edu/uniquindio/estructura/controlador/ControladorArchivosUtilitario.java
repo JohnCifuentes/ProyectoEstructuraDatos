@@ -48,6 +48,7 @@ public class ControladorArchivosUtilitario {
 	}
 	
 	/**
+	 * Gestor Departamentos
 	 **/
 	public List<Departamento> cargarDepartamento() throws IOException{
 		DepartamentoAccesoDato departamentoAccesoDato = new DepartamentoAccesoDato();
@@ -73,6 +74,7 @@ public class ControladorArchivosUtilitario {
 	}
 	
 	/**
+	 * Gestor Municipios
 	 **/
 	public List<Municipio> cargarMunicipio() throws IOException{
 		MunicipioAccesoDato municipioAccesoDato = new MunicipioAccesoDato();

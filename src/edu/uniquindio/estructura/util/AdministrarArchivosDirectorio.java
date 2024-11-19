@@ -67,15 +67,8 @@ public class AdministrarArchivosDirectorio {
     
     private void comprimirDirectorioRecursivo(File archivo, String nombreArchivo, ZipOutputStream zipOut) throws IOException {
         if (archivo.isDirectory()) {
-            if (nombreArchivo.endsWith("/")) {
-                zipOut.putNextEntry(new ZipEntry(nombreArchivo));
-                zipOut.closeEntry();
-            } else {
-                zipOut.putNextEntry(new ZipEntry(nombreArchivo + "/"));
-                zipOut.closeEntry();
-            }
             for (File hijo : archivo.listFiles()) {
-                comprimirDirectorioRecursivo(hijo, nombreArchivo + "/" + hijo.getName(), zipOut);
+                comprimirDirectorioRecursivo(hijo, hijo.getName(), zipOut);
             }
         } else {
             try (FileInputStream fis = new FileInputStream(archivo)) {
@@ -90,4 +83,24 @@ public class AdministrarArchivosDirectorio {
             }
         }
     }
+    
+    public boolean limpiarCarpeta(String rutaDirectorio) {
+        File directorio = new File(rutaDirectorio);
+
+        if (!directorio.exists() || !directorio.isDirectory()) {
+            return false;
+        }
+
+        File[] archivos = directorio.listFiles();
+        if (archivos != null) {
+            for (File archivo : archivos) {
+                if (archivo.isDirectory()) {
+                    limpiarCarpeta(archivo.getAbsolutePath());
+                }
+                archivo.delete();
+            }
+        }
+        return true;
+    }
+
 }

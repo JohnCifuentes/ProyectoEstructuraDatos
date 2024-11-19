@@ -4,11 +4,12 @@ import java.io.IOException;
 
 import edu.uniquindio.estructura.modelo.csv.CsvAccesoDatos;
 import edu.uniquindio.estructura.modelo.entidades.Departamento;
+import edu.uniquindio.estructura.util.Herramientas;
 
 public class DepartamentoAccesoDato extends CsvAccesoDatos<Departamento, String>{
 
 	public DepartamentoAccesoDato() throws IOException {
-		super("C:\\Users\\Steba\\IdeaProjects\\ProyectoEstructuraDatos\\recursos\\Utilitario\\departamentosColombia.csv");
+		super(Herramientas.getDirectorioSolicitudUtilitario() + "\\departamentosColombia.csv");
 	}
 
 }

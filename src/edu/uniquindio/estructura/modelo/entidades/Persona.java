@@ -1,5 +1,9 @@
 package edu.uniquindio.estructura.modelo.entidades;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+
 public class Persona {
 	private TipoDocumento tipoDocumento;
 	private String documento;
@@ -93,6 +97,26 @@ public class Persona {
 
 	public void setCiudadResidencia(Municipio ciudadResidencia) {
 		this.ciudadResidencia = ciudadResidencia;
+	}
+	
+	public int getEdad() {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyyyy");
+		LocalDate fechaNac = LocalDate.parse(this.fechaNacimiento, formatter);
+		LocalDate fechaActual = LocalDate.now();
+		Period periodo = Period.between(fechaNac, fechaActual);
+		return periodo.getYears();
+	}
+	
+	public String datosBasicos() {
+		return this.tipoDocumento.getCodigoTipoDocumento() 
+				+ " - " + this.documento 
+				+ " - " + this.nombreCompleto;
+	}
+	
+	public String datosBasicosFechaNacimiento() {
+		return datosBasicos() 
+				+ " - " + this.fechaNacimiento
+				+ " - " + getEdad();
 	}
 	
 }

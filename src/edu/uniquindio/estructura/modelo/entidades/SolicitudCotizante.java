@@ -1,6 +1,7 @@
 package edu.uniquindio.estructura.modelo.entidades;
 
 public class SolicitudCotizante {
+	private String nombreArchivoOrigen;
 	private Persona persona;
 	private FondosOrigen fondoOrigen;
 	private int prePensionado;
@@ -10,10 +11,12 @@ public class SolicitudCotizante {
 	private int familiaPolicia;
 	private int observacionDisciplinaria;
 	private int numeroSemanas;
-	
-	public SolicitudCotizante(Persona persona, FondosOrigen fondoOrigen, int prePensionado,
+
+	public SolicitudCotizante(String nombreArchivoOrigen, Persona persona, FondosOrigen fondoOrigen, int prePensionado,
 			InstitucionesPublicas institucionPublica, int condecoracion, int hijosInpec, int familiaPolicia,
 			int observacionDisciplinaria, int numeroSemanas) {
+		super();
+		this.nombreArchivoOrigen = nombreArchivoOrigen;
 		this.persona = persona;
 		this.fondoOrigen = fondoOrigen;
 		this.prePensionado = prePensionado;
@@ -23,6 +26,14 @@ public class SolicitudCotizante {
 		this.familiaPolicia = familiaPolicia;
 		this.observacionDisciplinaria = observacionDisciplinaria;
 		this.numeroSemanas = numeroSemanas;
+	}
+
+	public String getNombreArchivoOrigen() {
+		return nombreArchivoOrigen;
+	}
+
+	public void setNombreArchivoOrigen(String nombreArchivoOrigen) {
+		this.nombreArchivoOrigen = nombreArchivoOrigen;
 	}
 
 	public Persona getPersona() {
@@ -97,4 +108,11 @@ public class SolicitudCotizante {
 		this.numeroSemanas = numeroSemanas;
 	}
 	
+	@Override
+	public String toString() {
+		return this.nombreArchivoOrigen
+			+ " - " + this.persona.datosBasicosFechaNacimiento()
+			+ " - " + this.fondoOrigen.getNombreFondoOrigen()
+			+ " - " + this.institucionPublica.getNombreInstitucionPublica();
+	}
 }

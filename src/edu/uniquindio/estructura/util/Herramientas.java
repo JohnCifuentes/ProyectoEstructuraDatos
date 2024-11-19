@@ -6,6 +6,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Herramientas {
+	private static final String DIRECTORIO_SOLICITUD_CARACTERIZACIONES = "C:\\Users\\johnc\\eclipse-workspace\\ProyectoEstructuraDatos\\recursos\\CaracterizacionesEntrantes";
+	private static final String DIRECTORIO_SOLICITUD_PROCESO = "C:\\Users\\johnc\\eclipse-workspace\\ProyectoEstructuraDatos\\recursos\\SolicitudesEnProcesamiento";
+	private static final String DIRECTORIO_SOLICITUD_ENTRANTES = "C:\\Users\\johnc\\eclipse-workspace\\ProyectoEstructuraDatos\\recursos\\SolicitudesEntrantes";
+	private static final String DIRECTORIO_SOLICITUD_PROCESADAS = "C:\\Users\\johnc\\eclipse-workspace\\ProyectoEstructuraDatos\\recursos\\SolicitudesProcesadas";
+	private static final String DIRECTORIO_SOLICITUD_UTILITARIO = "C:\\Users\\johnc\\eclipse-workspace\\ProyectoEstructuraDatos\\recursos\\Utilitario";
+	private static final String DIRECTORIO_SOLICITUD = "C:\\Users\\johnc\\eclipse-workspace\\ProyectoEstructuraDatos\\recursos";
 	
     public static boolean validarFormatoFecha(String fecha) {
         if (fecha == null || (fecha.length() != 7 && fecha.length() != 8)) {
@@ -68,5 +74,49 @@ public class Herramientas {
         String fechaFormateada = fechaActual.format(formato);
         return fechaFormateada;
     }
+    
+    public static String obtenerFechaActual() {
+        LocalDate fechaActual = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy_MM_dd");
+        return fechaActual.format(formatter);
+    }
+    
+    public static boolean fechaInhabilitadoSeisMeses(String fechaRegistro) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyyyy");
+        LocalDate fechaRegistroDate = LocalDate.parse(fechaRegistro, formatter);
 
+        LocalDate fechaActual = LocalDate.now();
+        LocalDate fechaHaceSeisMeses = fechaActual.minusMonths(6);
+
+        if (fechaRegistroDate.isBefore(fechaHaceSeisMeses) || fechaRegistroDate.isEqual(fechaHaceSeisMeses)) {
+            return false;
+        }
+        
+        return true;
+    }
+
+	public static String getDirectorioSolicitudCaracterizaciones() {
+		return DIRECTORIO_SOLICITUD_CARACTERIZACIONES;
+	}
+
+	public static String getDirectorioSolicitudProceso() {
+		return DIRECTORIO_SOLICITUD_PROCESO;
+	}
+
+	public static String getDirectorioSolicitudEntrantes() {
+		return DIRECTORIO_SOLICITUD_ENTRANTES;
+	}
+
+	public static String getDirectorioSolicitudProcesadas() {
+		return DIRECTORIO_SOLICITUD_PROCESADAS;
+	}
+
+	public static String getDirectorioSolicitudUtilitario() {
+		return DIRECTORIO_SOLICITUD_UTILITARIO;
+	}
+
+	public static String getDirectorioSolicitud() {
+		return DIRECTORIO_SOLICITUD;
+	}
+	
 }

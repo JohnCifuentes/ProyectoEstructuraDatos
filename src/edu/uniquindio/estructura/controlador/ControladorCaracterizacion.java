@@ -6,15 +6,15 @@ import java.util.ArrayList;
 import edu.CargarArchivos;
 import edu.uniquindio.estructura.modelo.csv.entidad.CaracterizacionRegistroAccesoDato;
 import edu.uniquindio.estructura.modelo.entidades.Caracterizacion;
-import edu.uniquindio.estructura.modelo.entidades.CaracterizacionRegistro;
 import edu.uniquindio.estructura.modelo.entidades.Persona;
 import edu.uniquindio.estructura.modelo.entidades.TipoCaracterizacion;
 import edu.uniquindio.estructura.modelo.entidades.TipoEntidad;
+import edu.uniquindio.estructura.modelo.entidades.registros.CaracterizacionRegistro;
 import edu.uniquindio.estructura.util.AdministrarArchivosDirectorio;
 import edu.uniquindio.estructura.util.Herramientas;
 
 public class ControladorCaracterizacion {
-	private static final String DIRECTORIO = "C:\\Users\\Steba\\IdeaProjects\\ProyectoEstructuraDatos\\recursos\\Caracterizaciones";
+	private static final String DIRECTORIO = Herramientas.getDirectorioSolicitudCaracterizaciones();
 	private static final int TAMANO_NOMBRE_ARCHIVO = 14; 
 	
 	private CargarArchivos cargarArchivos;
@@ -25,11 +25,11 @@ public class ControladorCaracterizacion {
 		this.caracterizaciones = new ArrayList<>();
 	}
 	
-	public void actualizarCaracterizaciones() {
+	public void actualizarCaracterizaciones() throws IOException{
 		this.caracterizaciones = cargarCaracterizaciones();
 	}
 	
-	private ArrayList<Caracterizacion> cargarCaracterizaciones(){
+	private ArrayList<Caracterizacion> cargarCaracterizaciones() throws IOException{
 		ArrayList<Caracterizacion> caracterizaciones = new ArrayList<>();
 		
 		for(String a: new AdministrarArchivosDirectorio().obtenerNombresObjetosEnDirectorio(DIRECTORIO)) {
