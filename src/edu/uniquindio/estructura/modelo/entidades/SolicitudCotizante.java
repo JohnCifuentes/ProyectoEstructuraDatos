@@ -11,10 +11,11 @@ public class SolicitudCotizante {
 	private int familiaPolicia;
 	private int observacionDisciplinaria;
 	private int numeroSemanas;
+	private boolean declarante;
 
 	public SolicitudCotizante(String nombreArchivoOrigen, Persona persona, FondosOrigen fondoOrigen, int prePensionado,
 			InstitucionesPublicas institucionPublica, int condecoracion, int hijosInpec, int familiaPolicia,
-			int observacionDisciplinaria, int numeroSemanas) {
+			int observacionDisciplinaria, int numeroSemanas, boolean declarante) {
 		super();
 		this.nombreArchivoOrigen = nombreArchivoOrigen;
 		this.persona = persona;
@@ -26,6 +27,7 @@ public class SolicitudCotizante {
 		this.familiaPolicia = familiaPolicia;
 		this.observacionDisciplinaria = observacionDisciplinaria;
 		this.numeroSemanas = numeroSemanas;
+		this.declarante = declarante;
 	}
 
 	public String getNombreArchivoOrigen() {
@@ -108,6 +110,14 @@ public class SolicitudCotizante {
 		this.numeroSemanas = numeroSemanas;
 	}
 	
+	public boolean esDeclarante() {
+		return declarante;	
+	}
+
+	public void setDeclarante(boolean declarante) {
+		this.declarante = declarante;
+	}
+
 	@Override
 	public String toString() {
 		return this.nombreArchivoOrigen

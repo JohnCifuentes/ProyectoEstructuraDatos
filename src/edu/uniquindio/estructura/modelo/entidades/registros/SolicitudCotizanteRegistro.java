@@ -17,6 +17,7 @@ public class SolicitudCotizanteRegistro {
 	private String familiaPolicia;
 	private String observacionDisciplinaria;
 	private String numeroSemanas;
+	private String declaraRenta;
 	
 	public SolicitudCotizanteRegistro() {		
 	}
@@ -25,7 +26,7 @@ public class SolicitudCotizanteRegistro {
 			String fechaNacimiento, String departamentoNacimiento, String ciudadNacimiento,
 			String departamentoResidencia, String ciudadResidencia, String fondoOrigen, String prePensionado,
 			String institucionPublica, String condecoracion, String hijosInpec, String familiaPolicia,
-			String observacionDisciplinaria, String numeroSemanas) {
+			String observacionDisciplinaria, String numeroSemanas, String declaraRenta) {
 		this.tipoDocumento = tipoDocumento;
 		this.numeroDocumento = numeroDocumento;
 		this.nombreCompleto = nombreCompleto;
@@ -42,6 +43,7 @@ public class SolicitudCotizanteRegistro {
 		this.familiaPolicia = familiaPolicia;
 		this.observacionDisciplinaria = observacionDisciplinaria;
 		this.numeroSemanas = numeroSemanas;
+		this.declaraRenta = declaraRenta;
 	}
 	
 	public String getTipoDocumento() {
@@ -170,5 +172,13 @@ public class SolicitudCotizanteRegistro {
 	public void setNumeroSemanas(String numeroSemanas) {
 		this.numeroSemanas = numeroSemanas;
 	}
-	
+
+	public String getDeclaraRenta() {
+		return declaraRenta;
+	}
+
+	public void setDeclaraRenta(String declaraRenta) {
+		this.declaraRenta = declaraRenta;
+	}
+		
 }

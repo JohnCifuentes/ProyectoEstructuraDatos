@@ -22,7 +22,7 @@ public class GenerarArchivosEntrantes {
             String fileName = ruta + "SolicitudEntrante#" + i + ".csv";
 
             try (FileWriter writer = new FileWriter(fileName)) {
-                writer.write("tipoDocumento,numeroDocumento,nombreCompleto,fechaNacimiento,departamentoNacimiento,ciudadNacimiento,departamentoResidencia,ciudadResidencia,fondoOrigen,prePensionado,institucionPublica,condecoracion,hijosInpec,familiaPolicia,observacionDisciplinaria,numeroSemanas\n");
+                writer.write("tipoDocumento,numeroDocumento,nombreCompleto,fechaNacimiento,departamentoNacimiento,ciudadNacimiento,departamentoResidencia,ciudadResidencia,fondoOrigen,prePensionado,institucionPublica,condecoracion,hijosInpec,familiaPolicia,observacionDisciplinaria,numeroSemanas,declaraRenta\n");
 
                 for (int j = 0; j < registrosPorArchivo; j++) {
                     String registro = generarRegistro(random, j % 10 == 0); // Genera basura en 10% de los casos
@@ -53,6 +53,7 @@ public class GenerarArchivosEntrantes {
         int familiaPolicia = random.nextInt(2);
         int observacionDisciplinaria = random.nextInt(2);
         int numeroSemanas = generarEntero(random, 1, 1000);
+        int declaraRenta = random.nextInt(2);
 
         return String.join(",",
                 tipoDocumento,
@@ -70,7 +71,8 @@ public class GenerarArchivosEntrantes {
                 String.valueOf(hijosInpec),
                 String.valueOf(familiaPolicia),
                 String.valueOf(observacionDisciplinaria),
-                String.valueOf(numeroSemanas)
+                String.valueOf(numeroSemanas),
+                String.valueOf(declaraRenta)
         );
     }
 

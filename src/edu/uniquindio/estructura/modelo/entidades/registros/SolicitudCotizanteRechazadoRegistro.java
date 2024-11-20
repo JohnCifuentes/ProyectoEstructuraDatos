@@ -9,6 +9,7 @@ public class SolicitudCotizanteRechazadoRegistro {
 	private String ciudadNacimiento;
 	private String departamentoResidencia;
 	private String ciudadResidencia;
+	private String declaraRenta;
 	
 	public SolicitudCotizanteRechazadoRegistro() {
 		super();
@@ -16,7 +17,7 @@ public class SolicitudCotizanteRechazadoRegistro {
 
 	public SolicitudCotizanteRechazadoRegistro(String tipoDocumento, String numeroDocumento, String nombreCompleto,
 			String fechaNacimiento, String departamentoNacimiento, String ciudadNacimiento,
-			String departamentoResidencia, String ciudadResidencia) {
+			String departamentoResidencia, String ciudadResidencia, String declaraRenta) {
 		this.tipoDocumento = tipoDocumento;
 		this.numeroDocumento = numeroDocumento;
 		this.nombreCompleto = nombreCompleto;
@@ -25,6 +26,7 @@ public class SolicitudCotizanteRechazadoRegistro {
 		this.ciudadNacimiento = ciudadNacimiento;
 		this.departamentoResidencia = departamentoResidencia;
 		this.ciudadResidencia = ciudadResidencia;
+		this.declaraRenta = declaraRenta;
 	}
 
 	public String getTipoDocumento() {
@@ -89,6 +91,14 @@ public class SolicitudCotizanteRechazadoRegistro {
 
 	public void setCiudadResidencia(String ciudadResidencia) {
 		this.ciudadResidencia = ciudadResidencia;
+	}
+
+	public String getDeclaraRenta() {
+		return declaraRenta;
+	}
+
+	public void setDeclaraRenta(String declaraRenta) {
+		this.declaraRenta = declaraRenta;
 	}
 	
 }

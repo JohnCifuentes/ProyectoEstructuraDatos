@@ -12,6 +12,7 @@ public class Herramientas {
 	private static final String DIRECTORIO_SOLICITUD_PROCESADAS = "C:\\Users\\johnc\\eclipse-workspace\\ProyectoEstructuraDatos\\recursos\\SolicitudesProcesadas";
 	private static final String DIRECTORIO_SOLICITUD_UTILITARIO = "C:\\Users\\johnc\\eclipse-workspace\\ProyectoEstructuraDatos\\recursos\\Utilitario";
 	private static final String DIRECTORIO_SOLICITUD = "C:\\Users\\johnc\\eclipse-workspace\\ProyectoEstructuraDatos\\recursos";
+	private static final int TRASLADOS_APROBADOS_X_DIA = 100;
 	
     public static boolean validarFormatoFecha(String fecha) {
         if (fecha == null || (fecha.length() != 7 && fecha.length() != 8)) {
@@ -117,6 +118,10 @@ public class Herramientas {
 
 	public static String getDirectorioSolicitud() {
 		return DIRECTORIO_SOLICITUD;
+	}
+
+	public static int getTrasladosAprobadosXDia() {
+		return TRASLADOS_APROBADOS_X_DIA;
 	}
 	
 }

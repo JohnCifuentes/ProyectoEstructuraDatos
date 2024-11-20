@@ -14,6 +14,24 @@ import edu.uniquindio.estructura.util.Herramientas;
 public class Main {
 	
 	public static void main(String[] args) throws IOException {
+		
+			
+		if(args.length == 0)
+			return;
+		
+		switch(args[0]) {
+			case "validarSolicitudCotizante":
+				validarSolicitudCotizante();
+				break;
+			case "trasladarSolicitudCotizantesAprobados":
+				trasladarSolicitudCotizantesAprobados();
+				break;
+			case "comprimirArchivos":
+				comprimirArchivos();
+				break;
+			default:
+				System.out.println("metodo no reconocido");
+		}
 
 	}
 	
@@ -45,17 +63,18 @@ public class Main {
 		CargarArchivos cargarArchivos = new CargarArchivos(new ControladorArchivosUtilitario());
 		cargarArchivos.getSolicitudesCotizante().actualizarSolicitudCotizaciones();
 		for(SolicitudCotizante s: cargarArchivos.getSolicitudesCotizante().getSolicitudCotizantes()) {
-			System.out.println(s.toString());
+			System.out.println(s.toString() + " es declarante? " + (s.esDeclarante()?"1":"0"));
 		}
 	}
 	
 	/**
 	 * Metodo que se llamara cada 60min
-	 * CargaLista: Caracterizaciones - ListaNegra - SolicitudCotizantes
+	 * CargaLista: Caracterizaciones - SolicitudCotizantes
+	 * Resultado: ListaNegraInhabilitados - SolicitudCotizantesAprobados - SolicitudCotizantesRechazados 
 	 * Aplica: ReglasEntidades - ReglasNegocio
 	 * @throws IOException 
 	 */
-	public void validarSolicitudCotizante() throws IOException {
+	public static void validarSolicitudCotizante() throws IOException {
 		ControladorArchivosUtilitario archivoUtilitario = new ControladorArchivosUtilitario();
 		CargarArchivos cargarArchivos = new CargarArchivos(archivoUtilitario);
 		ControladorValidarSolicitudCotizante validarSolicitudCotizante = new ControladorValidarSolicitudCotizante(cargarArchivos);
@@ -67,10 +86,9 @@ public class Main {
 	 * CargaLista: SolicitudCotizanteAprobado
 	 * @throws IOException 
 	 */
-	public void traspasarSolicitudCotizantesAprobados() throws IOException {
-		ControladorArchivosUtilitario archivoUtilitario = new ControladorArchivosUtilitario();
-		CargarArchivos cargarArchivos = new CargarArchivos(archivoUtilitario);
-		ControladorCotizante controladorCotizante = new ControladorCotizante(cargarArchivos.getListaCotizantesAprobados().getSolicitudCotizantesAprobados());
+	public static void trasladarSolicitudCotizantesAprobados() throws IOException {
+		CargarArchivos cargarArchivos = new CargarArchivos(new ControladorArchivosUtilitario());
+		ControladorCotizante controladorCotizante = new ControladorCotizante(cargarArchivos);
 		controladorCotizante.trasladarCotizantes();
 	}
 	

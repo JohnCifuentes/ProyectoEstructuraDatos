@@ -16,6 +16,7 @@ public class ControladorSolicitudCotizanteAprobado {
 
 	public ControladorSolicitudCotizanteAprobado(CargarArchivos cargarArchivos) {
 		this.cargarArchivos = cargarArchivos;
+		this.solicitudCotizantesAprobados = new ArrayList<>();
 	}
 	
 	public void actualizarSolicitudCotizantesAprobados() throws IOException {
@@ -25,7 +26,7 @@ public class ControladorSolicitudCotizanteAprobado {
 	public ArrayList<SolicitudCotizanteAprobado> cargarSolicitudCotizantesAprobados() throws IOException{
 		ArrayList<SolicitudCotizanteAprobado> solicitudCotizantesAprobados = new ArrayList<>();
 		for(SolicitudCotizanteAprobadoRegistro s: new SolicitudCotizanteAprobadoAccesoDato().obtenerTodos()) {
-			this.solicitudCotizantesAprobados.add(new SolicitudCotizanteAprobado(
+			solicitudCotizantesAprobados.add(new SolicitudCotizanteAprobado(
 						this.cargarArchivos.getArchivosUtilitario().getTipoDocumento(s.getTipoDocumento()),
 						s.getNumeroDocumento(),
 						s.getNombreCompleto(),
@@ -33,7 +34,8 @@ public class ControladorSolicitudCotizanteAprobado {
 						this.cargarArchivos.getArchivosUtilitario().getDepartamento(s.getDepartamentoNacimiento()),
 						this.cargarArchivos.getArchivosUtilitario().getMunicipio(s.getCiudadNacimiento()),
 						this.cargarArchivos.getArchivosUtilitario().getDepartamento(s.getDepartamentoResidencia()),
-						this.cargarArchivos.getArchivosUtilitario().getMunicipio(s.getCiudadResidencia())
+						this.cargarArchivos.getArchivosUtilitario().getMunicipio(s.getCiudadResidencia()),
+						s.getDeclaraRenta().equals("1")?true:false
 					));
 		}
 		return solicitudCotizantesAprobados;
@@ -47,6 +49,14 @@ public class ControladorSolicitudCotizanteAprobado {
 		this.solicitudCotizantesAprobados = solicitudCotizantesAprobados;
 	}
 
+	public void actualizarArchivoListaSolicitudCotizantesAprobados(ArrayList<SolicitudCotizanteAprobado> listaSolicitudesAprobadasRestante) {
+		EscribirRegistroArchivo<SolicitudCotizanteAprobadoRegistro> registroArchivo = new EscribirRegistroArchivo<>(Herramientas.getDirectorioSolicitud() + "\\listaSolicitudCotizantesAprobados.csv");
+		registroArchivo.actualizarListaCotizantes();
+		listaSolicitudesAprobadasRestante.forEach(l -> {
+			agregarSolicitudCotizanteCsv(l);
+		});
+	}
+	
 	public void agregarSolicitudCotizante(SolicitudCotizanteAprobado solicitudCotizanteAprobado) {
 		for(SolicitudCotizanteAprobado c: this.solicitudCotizantesAprobados) {
 			if(c.getTipoDocumento().equals(solicitudCotizanteAprobado.getTipoDocumento()) && c.getDocumento().equals(solicitudCotizanteAprobado.getDocumento())) {
@@ -56,7 +66,7 @@ public class ControladorSolicitudCotizanteAprobado {
 		agregarSolicitudCotizanteCsv(solicitudCotizanteAprobado);
 	}
 	
-	public void agregarSolicitudCotizanteCsv(SolicitudCotizanteAprobado solicitudCotizanteAprobado) {
+	private void agregarSolicitudCotizanteCsv(SolicitudCotizanteAprobado solicitudCotizanteAprobado) {
 		EscribirRegistroArchivo<SolicitudCotizanteAprobadoRegistro> registroArchivo = new EscribirRegistroArchivo<>(Herramientas.getDirectorioSolicitud() + "\\listaSolicitudCotizantesAprobados.csv");
 		registroArchivo.escribirObjeto(new SolicitudCotizanteAprobadoRegistro(
 				solicitudCotizanteAprobado.getTipoDocumento().getCodigoTipoDocumento(),
@@ -66,7 +76,8 @@ public class ControladorSolicitudCotizanteAprobado {
 				solicitudCotizanteAprobado.getDepartamentoNacimiento().getCodigoDepartamento(),
 				solicitudCotizanteAprobado.getCiudadNacimiento().getCodigoMunicipio(),
 				solicitudCotizanteAprobado.getDepartamentoResidencia().getCodigoDepartamento(),
-				solicitudCotizanteAprobado.getCiudadResidencia().getCodigoMunicipio()				
+				solicitudCotizanteAprobado.getCiudadResidencia().getCodigoMunicipio(),
+				solicitudCotizanteAprobado.esDeclarante()?"1":"0"
 			));
 		this.solicitudCotizantesAprobados.add(solicitudCotizanteAprobado);
 	}

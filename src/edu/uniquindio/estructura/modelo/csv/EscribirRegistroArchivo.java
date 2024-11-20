@@ -46,4 +46,21 @@ public class EscribirRegistroArchivo<T> {
 
         return valores;
     }
+    
+    public void actualizarListaCotizantes() {
+        try (BufferedWriter escritor = new BufferedWriter(new FileWriter(rutaArchivo, false))) {
+            String[] valores = {"tipoDocumento","numeroDocumento","nombreCompleto","fechaNacimiento","departamentoNacimiento","ciudadNacimiento","departamentoResidencia","ciudadResidencia","declaraRenta"};
+
+            StringBuilder linea = new StringBuilder();
+            for (int i = 0; i < valores.length; i++) {
+                linea.append(valores[i]);
+                if (i < valores.length - 1) {
+                    linea.append(","); 
+                }
+            }
+            escritor.write(linea.toString()); 
+        } catch (IOException e) {
+            System.err.println("Error al escribir en el archivo CSV: " + e.getMessage());
+        }
+    }
 }

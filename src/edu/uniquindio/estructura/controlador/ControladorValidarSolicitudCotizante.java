@@ -9,6 +9,7 @@ import edu.uniquindio.estructura.modelo.entidades.InstitucionesPublicas;
 import edu.uniquindio.estructura.modelo.entidades.ListaNegra;
 import edu.uniquindio.estructura.modelo.entidades.SolicitudCotizante;
 import edu.uniquindio.estructura.modelo.entidades.SolicitudCotizanteAprobado;
+import edu.uniquindio.estructura.modelo.entidades.SolicitudCotizanteRechazado;
 import edu.uniquindio.estructura.modelo.entidades.TipoCaracterizacion;
 import edu.uniquindio.estructura.util.Herramientas;
 
@@ -21,10 +22,13 @@ public class ControladorValidarSolicitudCotizante {
 	
 	public void validarSolicitudCotizantes() throws IOException {
 		/**
-		 * Se actualiza la lista de caracterizaciones y solicitud de cotizantes.
+		 * Se actualiza la lista de caracterizaciones, solicitud de cotizantes, cotizantes inhabilitados (lista negra), cotizantes rechazados y cotizantes aprobados
 		 */
 		this.cargarArchivos.getCaracterizaciones().actualizarCaracterizaciones();
 		this.cargarArchivos.getSolicitudesCotizante().actualizarSolicitudCotizaciones();
+		this.cargarArchivos.getListaSolicitudesInhabilitados().actualizarListaNegra();
+		this.cargarArchivos.getListaCotizantesRechazados().actualizarSolicitudCotizantesRechazados();
+		this.cargarArchivos.getListaCotizantesAprobados().actualizarSolicitudCotizantesAprobados();
 		/**
 		 * Se recorre cada solicitud de cotizante.
 		 */
@@ -49,7 +53,20 @@ public class ControladorValidarSolicitudCotizante {
 							solicitudRegistro.getPersona().getDepartamentoNacimiento(),
 							solicitudRegistro.getPersona().getCiudadNacimiento(),
 							solicitudRegistro.getPersona().getDepartamentoResidencia(),
-							solicitudRegistro.getPersona().getCiudadResidencia()
+							solicitudRegistro.getPersona().getCiudadResidencia(),
+							solicitudRegistro.esDeclarante()
+							));
+				} else {
+					this.cargarArchivos.getListaCotizantesRechazados().agregarSolicitudCotizante(new SolicitudCotizanteRechazado(
+							solicitudRegistro.getPersona().getTipoDocumento(),
+							solicitudRegistro.getPersona().getDocumento(),
+							solicitudRegistro.getPersona().getNombreCompleto(),
+							solicitudRegistro.getPersona().getFechaNacimiento(),
+							solicitudRegistro.getPersona().getDepartamentoNacimiento(),
+							solicitudRegistro.getPersona().getCiudadNacimiento(),
+							solicitudRegistro.getPersona().getDepartamentoResidencia(),
+							solicitudRegistro.getPersona().getCiudadResidencia(),
+							solicitudRegistro.esDeclarante()
 							));
 				}
 			/**

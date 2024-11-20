@@ -54,7 +54,8 @@ public class ControladorSolicitudCotizante {
 									Integer.parseInt(s.getHijosInpec()),
 									Integer.parseInt(s.getFamiliaPolicia()),
 									Integer.parseInt(s.getObservacionDisciplinaria()),
-									Integer.parseInt(s.getNumeroSemanas())
+									Integer.parseInt(s.getNumeroSemanas()),
+									(s.getDeclaraRenta().equals("1")?true:false)
 								)
 						);
 				}
@@ -128,6 +129,12 @@ public class ControladorSolicitudCotizante {
 		}
 		
 		if(!Herramientas.esNumero(solicitudCotizanteRegistro.getNumeroSemanas())) {
+			return false;
+		}
+		
+		if(!Herramientas.esNumero(solicitudCotizanteRegistro.getDeclaraRenta())) {
+			return false;
+		} else if(Integer.parseInt(solicitudCotizanteRegistro.getDeclaraRenta()) > 1){
 			return false;
 		}
 		

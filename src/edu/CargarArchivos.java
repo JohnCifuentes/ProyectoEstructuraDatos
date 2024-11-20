@@ -8,6 +8,7 @@ import edu.uniquindio.estructura.controlador.ControladorCotizante;
 import edu.uniquindio.estructura.controlador.ControladorListaNegra;
 import edu.uniquindio.estructura.controlador.ControladorSolicitudCotizante;
 import edu.uniquindio.estructura.controlador.ControladorSolicitudCotizanteAprobado;
+import edu.uniquindio.estructura.controlador.ControladorSolicitudCotizanteRechazado;
 
 public class CargarArchivos {
 	private ControladorArchivosUtilitario archivosUtilitario;
@@ -15,6 +16,7 @@ public class CargarArchivos {
 	private ControladorSolicitudCotizante solicitudesCotizante;
 	private ControladorListaNegra ListaSolicitudesInhabilitados;
 	private ControladorSolicitudCotizanteAprobado listaCotizantesAprobados;
+	private ControladorSolicitudCotizanteRechazado listaCotizantesRechazados;
 	private ControladorCotizante listaCotizantes;
 	
 	public CargarArchivos(ControladorArchivosUtilitario archivosUtilitario) throws IOException {
@@ -23,6 +25,7 @@ public class CargarArchivos {
 		this.solicitudesCotizante = new ControladorSolicitudCotizante(this);
 		this.ListaSolicitudesInhabilitados = new ControladorListaNegra(this);
 		this.listaCotizantesAprobados = new ControladorSolicitudCotizanteAprobado(this);
+		this.listaCotizantesRechazados = new ControladorSolicitudCotizanteRechazado(this);
 	}
 
 	public ControladorArchivosUtilitario getArchivosUtilitario() {
@@ -43,6 +46,10 @@ public class CargarArchivos {
 
 	public ControladorSolicitudCotizanteAprobado getListaCotizantesAprobados() {
 		return listaCotizantesAprobados;
+	}
+
+	public ControladorSolicitudCotizanteRechazado getListaCotizantesRechazados() {
+		return listaCotizantesRechazados;
 	}
 
 	public ControladorCotizante getListaCotizantes() {
